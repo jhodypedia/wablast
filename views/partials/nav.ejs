@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg bg-white sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/"><i class="fa-solid fa-bolt text-success me-1"></i> <%= site_name %></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <% if (typeof user !== 'undefined') { %>
+          <% if (user.role === 'admin') { %>
+            <li class="nav-item mx-lg-2"><a class="nav-link" href="/admin"><i class="fa-solid fa-chart-line me-1"></i> Admin</a></li>
+            <li class="nav-item mx-lg-2"><a class="nav-link" href="/admin/users"><i class="fa-solid fa-users me-1"></i> Users</a></li>
+            <li class="nav-item mx-lg-2"><a class="nav-link" href="/admin/settings"><i class="fa-solid fa-gear me-1"></i> Settings</a></li>
+          <% } %>
+          <li class="nav-item mx-lg-2">
+            <span class="nav-link"><i class="fa-solid fa-user me-1"></i> <%= user.fullname %> (<%= user.role %>)</span>
+          </li>
+          <li class="nav-item mx-lg-2">
+            <button id="btnLogout" class="btn btn-danger btn-sm"><i class="fa-solid fa-right-from-bracket me-1"></i> Logout</button>
+          </li>
+        <% } else { %>
+          <li class="nav-item mx-lg-2"><a class="btn btn-outline-primary btn-sm" href="/login">Login</a></li>
+          <% if (register_enabled) { %>
+            <li class="nav-item mx-lg-2 mt-2 mt-lg-0"><a class="btn btn-primary btn-sm" href="/register">Register</a></li>
+          <% } %>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
