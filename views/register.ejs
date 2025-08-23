@@ -1,0 +1,42 @@
+<% layout('layout') %>
+<% if (typeof closed !== 'undefined' && closed) { %>
+  <div class="alert alert-warning">Registrasi sedang dinonaktifkan oleh Admin.</div>
+<% } else { %>
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card p-3">
+      <div class="card-body">
+        <h4 class="mb-3"><i class="fa-solid fa-user-plus me-1"></i> Register</h4>
+        <form id="formRegister">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Username</label>
+              <input name="username" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Fullname</label>
+              <input name="fullname" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email</label>
+              <input name="email" type="email" class="form-control" required />
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Role</label>
+              <select name="role" class="form-select">
+                <option value="member">Member</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Password</label>
+              <input name="password" type="password" class="form-control" required />
+            </div>
+          </div>
+          <button class="btn btn-success w-100 mt-3">Daftar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<% } %>
