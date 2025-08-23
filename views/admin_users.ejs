@@ -1,0 +1,38 @@
+<% layout('layout') %>
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+  <h3 class="m-0"><i class="fa-solid fa-users me-1"></i> Manajemen User</h3>
+  <a href="/admin/users/new" class="btn btn-primary"><i class="fa fa-plus me-1"></i> Tambah User</a>
+</div>
+
+<div class="card reveal">
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle">
+        <thead>
+          <tr>
+            <th>ID</th><th>Username</th><th>Fullname</th><th>Email</th><th>Role</th><th>Dibuat</th><th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach(u => { %>
+            <tr>
+              <td><%= u.id %></td>
+              <td><%= u.username %></td>
+              <td><%= u.fullname %></td>
+              <td><%= u.email %></td>
+              <td><span class="badge <%= u.role==='admin'?'bg-danger':'bg-secondary' %>"><%= u.role %></span></td>
+              <td><%= u.created_at %></td>
+              <td class="text-nowrap">
+                <a href="/admin/users/<%= u.id %>/edit" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
+                <form action="/admin/users/<%= u.id %>/delete" method="post" style="display:inline" onsubmit="return confirm('Yakin hapus?')">
+                  <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
