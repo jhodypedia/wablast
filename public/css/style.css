@@ -1,0 +1,60 @@
+:root{
+  --soft: cubic-bezier(.22,.61,.36,1);
+}
+
+body{
+  background: linear-gradient(180deg,#f8fafc,#ffffff);
+  min-height:100vh;
+}
+
+/* Cards enter animation */
+.reveal{
+  opacity:0; transform: translateY(14px) scale(.98);
+  transition: opacity .6s var(--soft), transform .6s var(--soft), box-shadow .3s var(--soft);
+}
+.reveal.in{
+  opacity:1; transform: translateY(0) scale(1);
+}
+.card{
+  border: 0; box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  border-radius:16px;
+}
+.card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.08);
+}
+
+.navbar{
+  backdrop-filter: saturate(1.2) blur(6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.05);
+}
+
+#qrBox img{
+  width: 100%;
+  max-width: 320px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(16,185,129,.25);
+  transition: transform .4s var(--soft);
+}
+#qrBox img:hover{ transform: rotate(1deg) scale(1.02); }
+
+.progress{ height: 10px; border-radius: 20px; overflow: hidden; }
+.progress-bar{ transition: width .3s ease; }
+
+/* Buttons micro-interactions */
+.btn{
+  border-radius: 12px;
+  transition: transform .1s ease, box-shadow .2s ease;
+}
+.btn:active{ transform: translateY(1px) scale(.99); }
+
+/* Responsive tweaks */
+@media (max-width: 768px){
+  .navbar .navbar-brand{ font-size: 1rem; }
+  .card{ border-radius:12px; }
+}
+
+/* SweetAlert2 fine-tune */
+.swal2-popup{
+  border-radius: 16px !important;
+}
