@@ -1,0 +1,57 @@
+<% layout('layout') %>
+
+<div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+  <h4 class="m-0"><i class="fa-brands fa-whatsapp me-1 text-success"></i> WhatsApp Panel</h4>
+  <button id="btnConnectWA" class="btn btn-outline-primary">
+    <i class="fa-solid fa-qrcode me-1"></i> Connect / Scan QR
+  </button>
+</div>
+
+<div class="row g-3">
+  <div class="col-lg-5">
+    <div class="card reveal">
+      <div class="card-header">Scan QR</div>
+      <div class="card-body text-center">
+        <div id="qrBox" class="p-3 border rounded bg-light">Belum ada QR</div>
+        <div id="waStatus" class="mt-2 text-muted small"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-7">
+    <div class="card reveal">
+      <div class="card-header d-flex align-items-center justify-content-between">
+        <span>Blast Message</span>
+        <span class="text-muted small">Tanpa reload</span>
+      </div>
+      <div class="card-body">
+        <form id="formUpload" class="mb-3">
+          <label class="form-label">Upload CSV/TXT</label>
+          <div class="d-flex gap-2 flex-wrap">
+            <input type="file" name="file" accept=".csv,.txt" class="form-control" style="max-width:360px" />
+            <button class="btn btn-secondary"><i class="fa-solid fa-file-arrow-up me-1"></i> Muat Nomor</button>
+          </div>
+        </form>
+
+        <div class="mb-3">
+          <label class="form-label">Nomor (628xxx), pisahkan baris atau koma</label>
+          <textarea id="numbers" class="form-control" rows="5" placeholder="6281xxxxxxx&#10;6285xxxxxxx"></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Pesan</label>
+          <textarea id="message" class="form-control" rows="3" placeholder="Halo, ini pesan percobaan."></textarea>
+        </div>
+        <button id="btnBlast" class="btn btn-success"><i class="fa-solid fa-paper-plane me-1"></i> Kirim Blast</button>
+
+        <div class="mt-3">
+          <div class="progress">
+            <div id="progBar" class="progress-bar bg-success" role="progressbar" style="width:0%"></div>
+          </div>
+          <pre id="logBox" class="small mt-2 p-2 bg-light rounded" style="max-height:220px; overflow:auto;"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script> window.__USER_ID__ = <%- JSON.stringify(user.sub) %>; </script>
