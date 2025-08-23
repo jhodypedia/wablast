@@ -1,0 +1,76 @@
+<% layout('layout') %>
+
+<h3 class="mb-3"><i class="fa-solid fa-chart-line me-1"></i> Statistik Aplikasi</h3>
+
+<div class="row g-3">
+  <div class="col-sm-6 col-lg-4">
+    <div class="card text-bg-primary reveal">
+      <div class="card-body">
+        <h6>Total Pengguna</h6>
+        <h2 class="mb-0"><%= totalUsers %></h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-lg-4">
+    <div class="card text-bg-success reveal">
+      <div class="card-body">
+        <h6>Total Pesan Terkirim</h6>
+        <h2 class="mb-0"><%= totalSent %></h2>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card reveal h-100">
+      <div class="card-body">
+        <h6>Export</h6>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-sm btn-outline-primary" href="/admin/export/users.csv"><i class="fa fa-download me-1"></i> Users CSV</a>
+          <a class="btn btn-sm btn-outline-primary" href="/admin/export/users.xlsx"><i class="fa fa-file-excel me-1"></i> Users XLSX</a>
+          <a class="btn btn-sm btn-outline-success" href="/admin/export/stats.csv"><i class="fa fa-download me-1"></i> Stats CSV</a>
+          <a class="btn btn-sm btn-outline-success" href="/admin/export/stats.xlsx"><i class="fa fa-file-excel me-1"></i> Stats XLSX</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-3 reveal">
+  <div class="card-body">
+    <h5 class="mb-3">Grafik Pesan per Hari</h5>
+    <canvas id="chart" height="110"></canvas>
+  </div>
+</div>
+
+<script src="/js/chart.min.js"></script>
+<script>
+  const ctx = document.getElementById('chart').getContext('2d');
+  const labels = <%- JSON.stringify(chartData.map(c => c.day)) %>;
+  const data = <%- JSON.stringify(chartData.map(c => c.sent)) %>;
+  new Chart(ctx, {
+    type: 'line',
+    data: { labels, datasets: [{ label: 'Pesan Terkirim', data, fill: true }] },
+    options: { responsive: true, interaction: { mode: 'index', intersect: false } }
+  });
+</script>
+
+<div class="card mt-3 reveal">
+  <div class="card-body">
+    <h5 class="mb-3">Log Blast Terbaru</h5>
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead><tr><th>ID</th><th>User</th><th>Fullname</th><th>Pesan Terkirim</th><th>Tanggal</th></tr></thead>
+        <tbody>
+          <% logs.forEach(l => { %>
+            <tr>
+              <td><%= l.id %></td>
+              <td><%= l.username %></td>
+              <td><%= l.fullname %></td>
+              <td><%= l.total_sent %></td>
+              <td><%= l.created_at %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
