@@ -1,0 +1,25 @@
+<% layout('layout') %>
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-5">
+    <div class="card reveal in p-3">
+      <div class="card-body">
+        <h4 class="mb-3"><i class="fa-solid fa-right-to-bracket me-1"></i> Login</h4>
+        <form id="formLogin" class="needs-validation" novalidate>
+          <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input name="username" class="form-control" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input name="password" type="password" class="form-control" required />
+          </div>
+          <button class="btn btn-primary w-100">Masuk</button>
+        </form>
+        <% if (register_enabled) { %>
+          <hr />
+          <p class="text-center mb-0">Belum punya akun? <a href="/register">Register</a></p>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
