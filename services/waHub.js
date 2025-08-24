@@ -1,8 +1,13 @@
-const { default: makeWASocket, useMultiFileAuthState, DisconnectReason } = require('@whiskeysockets/baileys');
+const baileys = require('@whiskeysockets/baileys');
 const qrcode = require('qrcode');
 const path = require('path');
 const logger = require('../lib/logger');
-
+const {
+  default: makeWASocket,
+  useMultiFileAuthState,
+  DisconnectReason,
+  fetchLatestBaileysVersion
+} = baileys;
 class WAHUB {
   constructor(io) {
     this.io = io;
